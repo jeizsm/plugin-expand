@@ -11,3 +11,11 @@ if status --is-interactive
   # If the user enters any key other than Backspace, exit expand mode and passthrough keys to the default binding.
   bind --mode expand --sets-mode default '' ''
 end
+
+set -l name (basename (status -f) .fish){_uninstall}
+
+function $name -e $name
+    echo $name
+    bind --mode expand --erase --all
+    bind \t --erase
+end
